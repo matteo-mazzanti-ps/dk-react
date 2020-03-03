@@ -7,3 +7,15 @@ before_install:
 
 script:
     - docker run -e CI=true taklia/dk-react npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-north-1"
+    app: dk-react
+    env: DkReact-env
+    bucket_name: elasticbeanstalk-eu-north-1-065700734771
+    bucket_path: dk-react
+    on: 
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
